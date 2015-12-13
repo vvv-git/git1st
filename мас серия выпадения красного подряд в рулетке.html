@@ -1,0 +1,56 @@
+﻿<meta charset="utf-8">
+<script>
+var arr = [];
+var rounds = 10000000;
+var serie = 0;
+var i = 0;
+var rand = 0;
+var byl = false;
+var answer = 1;
+var red = 0;
+var black = 0;
+var zero = 0;
+var bet = 1;
+
+for(i=0; i<rounds; i++) {
+	rand = Math.round(Math.random()*36);
+	if (rand == 0) {
+		arr.push(0);
+		zero++;
+	} else if (rand <= 18) {
+				arr.push(1);
+				red++;
+			}
+			else {
+				arr.push(-1);
+				black++;
+			}
+}
+
+alert('всего красных = ' + red + 'всего черных = ' + black + 'всего 0 = ' + zero);
+
+for(i=0; i<arr.length; i++) {
+	if((arr[i] == 1) && (byl == true)) {
+		serie++;
+		if(serie > answer) {
+			answer = serie;
+		}
+	}
+	else if((arr[i] == 1) && (byl == false)) {
+		byl = true;
+		serie++;
+	}
+	else {
+		byl = false;
+		serie = 0;
+	}
+}
+
+alert('максимальная серия выпадения красного подряд = ' + answer);
+for(i=1; i<=answer; i++) {
+	bet = bet*2;
+}
+alert('Ставка для безпроигрышной серии = ' + bet);
+
+</script>
+
